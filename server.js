@@ -1,6 +1,6 @@
 const express = require('express');
 const connectDB = require('./config/db')
-
+const cors = require('cors');
 const app = express();
 
 //conecct database
@@ -8,6 +8,12 @@ connectDB();
 
 //init middleware
 app.use(express.json({ extended: false }))
+app.use(cors());
+
+app.use(function (req, res, next) {
+    res.header('Access-Control-Allow-Methods', 'POST, GET, OPTIONS');
+    next();
+});
 
 app.get("/", (req, res) => {
     res.send('API Running')

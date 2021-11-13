@@ -13,7 +13,7 @@ const config = require('config')
 
 router.post('/', [
     check('name', 'Name is required').notEmpty(),
-    check('email', 'email is required').isEmail(),
+    check('email', 'Please include a valid email').isEmail(),
     check('password', 'password is required of min 6 or more character').isLength({ min: 6 })
 ], async (req, res) => {
     const errors = validationResult(req);
